@@ -2,7 +2,7 @@ export enum SelectedPage {
   Home = 'home',
   ContactUs = 'contactus',
   Benefits = 'benefits',
-  OurClass = 'ourclass',
+  OurClasses = 'ourclasses',
 }
 
 export interface BenefitType {
@@ -11,6 +11,11 @@ export interface BenefitType {
   description: string;
 }
 
+export interface ClassType {
+  name: string;
+  description?: string;
+  image: string;
+}
 // export const selectedPage = {
 //   Home: 'home',
 //   ContactUs: 'contactus',
