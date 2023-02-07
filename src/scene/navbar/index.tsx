@@ -3,6 +3,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import Logo from '@/assets/Logo.png';
 import Link from './link';
 import { SelectedPage } from '@/shared/types';
+import useMediaQuery from '@/hooks/usemadiaquerie';
 
 type Props = {
   selectedPage: SelectedPage;
@@ -11,6 +12,8 @@ type Props = {
 
 const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   const flexBetween = 'flex item-center justify-between';
+  const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)');
+  const [isMenuToggle, setIsMenuToggle] = useState<boolean>(false);
 
   return (
     <nav>
@@ -18,34 +21,43 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
         <div className={`${flexBetween} mx-auto w-5/6 `}>
           <div className={`${flexBetween} w-full gap-16`}>
             <img src={Logo} alt='logo' />
-            <div className={`${flexBetween} w-full `}>
-              <div className={`${flexBetween} texsm gap-8`}>
-                <Link
-                  page='Home'
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-                <Link
-                  page='Benefits'
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-                <Link
-                  page='Our Classes'
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-                <Link
-                  page='Contact Us'
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
+            {isAboveMediumScreens ? (
+              <div className={`${flexBetween} w-full `}>
+                <div className={`${flexBetween} texsm gap-8`}>
+                  <Link
+                    page='Home'
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                  <Link
+                    page='Benefits'
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                  <Link
+                    page='Our Classes'
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                  <Link
+                    page='Contact Us'
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </div>
+                <div className={`${flexBetween} gap-8`}>
+                  <p>Sign In</p>
+                  <button>Become a Member</button>
+                </div>
               </div>
-              <div className={`${flexBetween} gap-8`}>
-                <p>Sign In</p>
-                <button>Become a Member</button>
-              </div>
-            </div>
+            ) : (
+              <button
+                className='rounded-full bg-secondary-500 p-2 '
+                onClick={() => setIsMenuToggle(!setIsMenuToggle)}
+              >
+                <Bars3Icon className='h-6 w-6 text-white ' />
+              </button>
+            )}
           </div>
         </div>
       </div>
