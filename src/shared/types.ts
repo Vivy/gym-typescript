@@ -5,6 +5,12 @@ export enum SelectedPage {
   OurClass = 'ourclass',
 }
 
+export interface BenefitType {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+}
+
 // export const selectedPage = {
 //   Home: 'home',
 //   ContactUs: 'contactus',
